@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import useCart from "../../CustomHooks/useCart";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../CustomHooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const [admin, setAdmin] = useState(true);
+  const [isAdmin] = useAdmin()
+  
 
   return (
     <div className="container mx-auto">
-      {admin ? (
+      {isAdmin ? (
         <>
         <div className="flex gap-10">
           <div className="w-72 py-10 px-4 bg-orange-500 min-h-screen">

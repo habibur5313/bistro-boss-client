@@ -11,7 +11,7 @@ import PopulerCard from "../Home/Menu/PopulerCard";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
-  const menus = useMenu();
+  const [menus] = useMenu();
   const offered = menus.filter((item) => item.category === "offered");
   const dessert = menus.filter((item) => item.category === "dessert");
   const pizza = menus.filter((item) => item.category === "pizza");

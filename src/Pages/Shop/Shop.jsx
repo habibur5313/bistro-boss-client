@@ -3,13 +3,16 @@ import CoverImage from "../Shared/CoverImage";
 import shopCover from "../../assets/shop/banner2.jpg";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import useMenu from "../../CustomHooks/useMenu";
+
 import ShopCard from "./ShopCard";
 import { useParams } from "react-router-dom";
+import useMenu from "../../CustomHooks/useMenu";
 
 const Shop = () => {
   const categories = ['offered','dessert','pizza','salad','soup']
-  const menus = useMenu();
+  const [menus] = useMenu();
+  console.log(menus);
+  
   const offered = menus.filter((item) => item.category === "offered");
   const dessert = menus.filter((item) => item.category === "dessert");
   const pizza = menus.filter((item) => item.category === "pizza");

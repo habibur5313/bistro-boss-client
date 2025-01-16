@@ -8,9 +8,10 @@ const useCart = () => {
   const {user} = useAuth()
 
     const { isPending, error, data : cart=[],refetch } = useQuery({
-      queryKey: ["cart"],
+      queryKey: ["cart",user?.email],
       queryFn: () =>
-        axiosSecure.get(`/carts`).then(({ data }) => {
+        axiosSecure.get(`/carts/${user?.email}`).then(({ data }) => {
+          
           return data;
 
         }),

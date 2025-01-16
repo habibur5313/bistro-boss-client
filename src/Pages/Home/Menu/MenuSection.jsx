@@ -4,7 +4,7 @@ import useMenu from "../../../CustomHooks/useMenu";
 import PopulerCard from "./PopulerCard";
 
 const MenuSection = () => {
-  const menus = useMenu()
+  const [menus] = useMenu()
   const popular = menus.filter(
             (item) => item.category === "popular"
           );

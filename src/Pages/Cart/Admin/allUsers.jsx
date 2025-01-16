@@ -5,6 +5,7 @@ import useAxios from "../../../CustomHooks/useAxios";
 const AllUsers = () => {
   const [users, refetch] = useAllUsers();
   const axiosSecure = useAxios();
+  
   const handleDelete = (id) => {
     axiosSecure
       .delete(`/users/${id}`)

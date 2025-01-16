@@ -16,6 +16,14 @@ import {
 import Dashboard from "./Pages/Cart/Dashboard";
 import MyCart from "./Pages/Cart/User/MyCart";
 import AllUsers from "./Pages/Cart/Admin/allUsers";
+import PrivateRoute from "./ProtectRoute/PrivateRoute";
+import AddItems from "./Pages/Cart/Admin/AddItems";
+import ManageItems from "./Pages/Cart/Admin/ManageItems";
+import AdminRoute from "./ProtectRoute/AdminRoute";
+import ItemsUpdate from "./Pages/Cart/Admin/ItemsUpdate";
+import Payment from "./Pages/Cart/User/Payment/Payment";
+import UserHome from "./Pages/Cart/User/UserHome";
+import AdminHome from "./Pages/Cart/Admin/AdminHome";
 
 const queryClient = new QueryClient()
 
@@ -47,16 +55,43 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    path: "dashboard",
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+      // normal user
       {
         path: 'myCart',
         element: <MyCart></MyCart>
       },
       {
+        path: 'userHome',
+        element: <UserHome></UserHome>
+      },
+      {
+        path: 'payment',
+        element: <Payment></Payment>
+      },
+      // admin
+      {
         path: 'allUsers',
-        element: <AllUsers></AllUsers>
+      element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path: 'addItems',
+      element: <AdminRoute><AddItems></AddItems></AdminRoute>
+      },
+      {
+        path: 'manageItems',
+      element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+      },
+      {
+        path: 'menus/update/:id',
+        element: <AdminRoute><ItemsUpdate></ItemsUpdate></AdminRoute>,
+        loader: (({params}) => fetch(`http://localhost:5000/menus/${params.id}`))
+      },
+      {
+        path: 'adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       }
     ]
   },

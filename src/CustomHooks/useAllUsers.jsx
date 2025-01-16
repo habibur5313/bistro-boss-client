@@ -10,11 +10,7 @@ const useAllUsers = () => {
                       const { isPending, error, data : users=[],refetch } = useQuery({
                         queryKey: ["users"],
                         queryFn: () =>
-                          axiosSecure.get(`/users`,{
-                                        headers: {
-                                                            Authorization: `Bearer ${localStorage.getItem('access-token')}` 
-                                        }
-                          }).then(({ data }) => {
+                          axiosSecure.get(`/users`).then(({ data }) => {
                             return data;
                   
                           }),
